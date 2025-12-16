@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="format-detection" content="telephone=no, address=no, email=no, date=no">
+  <title>Snowflake Release Updates - December 2025</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <style type="text/css">
+    table { border-collapse: collapse; }
+    td { padding: 0; }
+    .mobile-stack, .mobile-full { width: 50% !important; }
+    .accordion-content { display: block !important; max-height: none !important; }
+  </style>
+  <![endif]-->
+  <style>
+    /* =====================================================
+       SNOWFLAKE NEWSLETTER TEMPLATE V2 - DYNAMIC EDITION
+       Brand Guidelines Compliant | CSS-Only Accordions
+       ===================================================== */
+    
+    /* Reset and base styles */
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+    
+    body { 
+      margin: 0 !important; 
+      padding: 0 !important; 
+      background-color: #F5F7FA;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -ms-text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+      width: 100% !important;
+      min-width: 100%;
+    }
+    
+    table { 
+      border-collapse: collapse;
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+    
+    td {
+      mso-line-height-rule: exactly;
+    }
+    
+    img { 
+      border: 0; 
+      display: block;
+      -ms-interpolation-mode: bicubic;
+      max-width: 100%;
+      height: auto;
+    }
+    
+    a { 
+      color: #29B5E8; 
+      text-decoration: none;
+    }
+    
+    a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Prevent iOS blue links */
+    a[x-apple-data-detectors] {
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+    
+    /* Prevent Gmail from changing link colors */
+    u + #body a {
+      color: inherit;
+      text-decoration: none;
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+    }
+    
+    /* =====================================================
+       CSS-ONLY ACCORDION SYSTEM
+       Uses checkbox hack for email client compatibility
+       ===================================================== */
+    
+    /* Hide checkbox inputs */
+    .accordion-toggle {
+      display: none !important;
+      position: absolute;
+      left: -9999px;
+    }
+    
+    /* Accordion header label styling */
+    .accordion-header {
+      display: block;
+      cursor: pointer;
+      padding: 20px 60px;
+      background: linear-gradient(135deg, #11567F 0%, #0d4a6b 100%);
+      border-bottom: 3px solid #29B5E8;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .accordion-header:hover {
+      background: linear-gradient(135deg, #166a94 0%, #11567F 100%);
+    }
+    
+    .accordion-header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .accordion-title {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      color: #FFFFFF;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .accordion-icon {
+      font-size: 20px;
+    }
+    
+    /* Arrow indicator */
+    .accordion-arrow {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 8px solid #29B5E8;
+      transition: transform 0.3s ease;
+      margin-left: auto;
+    }
+    
+    /* Accordion content - collapsed by default */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+      background-color: #FFFFFF;
+    }
+    
+    /* When checkbox is checked, expand content */
+    .accordion-toggle:checked + .accordion-header + .accordion-content {
+      max-height: 5000px;
+      overflow: visible;
+    }
+    
+    /* Rotate arrow when expanded */
+    .accordion-toggle:checked + .accordion-header .accordion-arrow {
+      transform: rotate(180deg);
+    }
+    
+    /* Featured section accordion (different styling) */
+    .accordion-header-featured {
+      background: linear-gradient(135deg, #29B5E8 0%, #11567F 100%);
+      border-bottom: 4px solid #FF9F36;
+    }
+    
+    .accordion-header-featured:hover {
+      background: linear-gradient(135deg, #3bc4f7 0%, #166a94 100%);
+    }
+    
+    /* Blog section accordion */
+    .accordion-header-blog {
+      background: #F5F7FA;
+      border-bottom: 3px solid #11567F;
+    }
+    
+    .accordion-header-blog .accordion-title {
+      color: #11567F;
+    }
+    
+    .accordion-header-blog .accordion-arrow {
+      border-top-color: #11567F;
+    }
+    
+    /* Summary section accordion */
+    .accordion-header-summary {
+      background: linear-gradient(135deg, #FFFFFF 0%, #F5F7FA 100%);
+      border-bottom: 3px solid #29B5E8;
+      border-left: 5px solid #29B5E8;
+    }
+    
+    .accordion-header-summary .accordion-title {
+      color: #11567F;
+    }
+    
+    .accordion-header-summary .accordion-arrow {
+      border-top-color: #29B5E8;
+    }
+    
+    /* Category accordions - collapsed style */
+    .accordion-header-category {
+      background: #FFFFFF;
+      border: 1px solid #E8ECF0;
+      border-left: 4px solid #11567F;
+      margin: 0 60px;
+      border-radius: 4px 4px 0 0;
+    }
+    
+    .accordion-header-category .accordion-title {
+      color: #11567F;
+      font-size: 14px;
+    }
+    
+    .accordion-header-category .accordion-arrow {
+      border-top-color: #11567F;
+    }
+    
+    .accordion-content-category {
+      margin: 0 60px;
+      border: 1px solid #E8ECF0;
+      border-top: none;
+      border-radius: 0 0 4px 4px;
+    }
+    
+    /* Count badge in accordion headers */
+    .count-badge {
+      display: inline-block;
+      background-color: #29B5E8;
+      color: #000000;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 12px;
+      margin-left: 12px;
+    }
+    
+    .accordion-header-category .count-badge {
+      background-color: #11567F;
+      color: #FFFFFF;
+    }
+    
+    /* =====================================================
+       COLOR PALETTE REFERENCE (Snowflake Brand Jan 2025)
+       =====================================================
+       PRIMARY COLORS:
+       - Snowflake Blue: #29B5E8 (headers, links, stats)
+       - Mid-Blue: #11567F (accents, borders, GA badges)
+       - Midnight: #000000 (titles, headings)
+       - Medium Gray: #5B5B5B (body copy, dates)
+       
+       SECONDARY COLORS (badges/charts only):
+       - Star Blue: #75CDD7 (data differentiation)
+       - Valencia Orange: #FF9F36 (PuPr badges)
+       - First Light: #D45B90 (data differentiation)
+       - Purple Moon: #7254A3 (PrPr badges)
+       
+       BADGE COLORS:
+       - GA: Background #11567F, Text #FFFFFF
+       - PuPr: Background #FF9F36, Text #000000
+       - PrPr: Background #7254A3, Text #FFFFFF
+       ===================================================== */
+    
+    /* Enhanced card styles with hover effects */
+    .feature-card-enhanced {
+      background-color: #FFFFFF;
+      border-radius: 8px;
+      border: 1px solid #E8ECF0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card-enhanced:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      transform: translateY(-2px);
+    }
+    
+    /* Status badges with enhanced styling */
+    .status-badge {
+      display: inline-block;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    .badge-ga {
+      background-color: #11567F;
+      color: #FFFFFF;
+    }
+    
+    .badge-pupr {
+      background-color: #FF9F36;
+      color: #000000;
+    }
+    
+    .badge-prpr {
+      background-color: #7254A3;
+      color: #FFFFFF;
+    }
+    
+    /* Decorative elements */
+    .section-divider {
+      height: 4px;
+      background: linear-gradient(90deg, #29B5E8 0%, #11567F 50%, #7254A3 100%);
+      margin: 0;
+    }
+    
+    .accent-bar {
+      width: 60px;
+      height: 4px;
+      background-color: #29B5E8;
+      margin-bottom: 15px;
+    }
+    
+    /* =====================================================
+       TABLET RESPONSIVE STYLES (max-width: 768px)
+       ===================================================== */
+    @media only screen and (max-width: 768px) {
+      .email-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .accordion-header,
+      .accordion-header-category {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+      
+      .accordion-content-category {
+        margin-left: 40px !important;
+        margin-right: 40px !important;
+      }
+      
+      .tablet-padding {
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+      
+      .header-title {
+        font-size: 32px !important;
+        letter-spacing: 1px !important;
+      }
+      
+      .header-subtitle {
+        font-size: 16px !important;
+      }
+      
+      .month-header {
+        font-size: 24px !important;
+      }
+      
+      .stat-cell {
+        width: 50% !important;
+        display: inline-block !important;
+        vertical-align: top !important;
+        border-left: none !important;
+      }
+      
+      .stat-number {
+        font-size: 40px !important;
+      }
+      
+      .feature-title {
+        font-size: 17px !important;
+      }
+      
+      .feature-summary {
+        font-size: 14px !important;
+      }
+    }
+    
+    /* =====================================================
+       MOBILE RESPONSIVE STYLES (max-width: 600px)
+       ===================================================== */
+    @media only screen and (max-width: 600px) {
+      .email-container {
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .mobile-padding { 
+        padding-left: 20px !important; 
+        padding-right: 20px !important; 
+      }
+      
+      .accordion-header,
+      .accordion-header-category {
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      
+      .accordion-content-category {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+      }
+      
+      .mobile-stack { 
+        display: block !important; 
+        width: 100% !important;
+        max-width: 100% !important;
+      }
+      
+      .mobile-full { 
+        width: 100% !important;
+        max-width: 100% !important;
+        padding-left: 0 !important; 
+        padding-right: 0 !important;
+        padding-bottom: 15px !important;
+      }
+      
+      .feature-card { 
+        margin-bottom: 15px !important; 
+      }
+      
+      .stat-cell { 
+        display: block !important; 
+        width: 100% !important; 
+        border-left: none !important; 
+        padding: 15px 0 !important;
+        border-bottom: 1px solid #E8ECF0 !important;
+      }
+      
+      .stat-cell:last-child {
+        border-bottom: none !important;
+      }
+      
+      .stat-number {
+        font-size: 36px !important;
+      }
+      
+      .stat-label {
+        font-size: 12px !important;
+      }
+      
+      .header-title {
+        font-size: 26px !important;
+        letter-spacing: 1px !important;
+        line-height: 1.2 !important;
+      }
+      
+      .header-subtitle {
+        font-size: 14px !important;
+      }
+      
+      .month-header {
+        font-size: 20px !important;
+      }
+      
+      .feature-title { 
+        font-size: 16px !important;
+        line-height: 1.3 !important;
+      }
+      
+      .feature-summary { 
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+      }
+      
+      .summary-text {
+        font-size: 14px !important;
+        line-height: 1.6 !important;
+      }
+      
+      .accordion-title {
+        font-size: 13px !important;
+      }
+      
+      .logo-img {
+        width: 70px !important;
+        height: 70px !important;
+      }
+      
+      .cta-title {
+        font-size: 20px !important;
+      }
+      
+      .cta-text {
+        font-size: 14px !important;
+      }
+      
+      .cta-button {
+        display: block !important;
+        width: 100% !important;
+        text-align: center !important;
+      }
+      
+      .cta-button a {
+        display: block !important;
+        padding: 16px 24px !important;
+        font-size: 14px !important;
+      }
+      
+      .status-badge {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+      }
+      
+      .view-docs-link {
+        padding: 8px 0 !important;
+        font-size: 13px !important;
+      }
+      
+      .blog-list li {
+        padding: 8px 0 !important;
+      }
+      
+      .blog-link {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+      }
+      
+      .industry-title {
+        font-size: 15px !important;
+      }
+      
+      .industry-summary {
+        font-size: 12px !important;
+      }
+      
+      .section-badge {
+        font-size: 11px !important;
+        padding: 5px 12px !important;
+      }
+      
+      .footer-text {
+        font-size: 11px !important;
+      }
+      
+      .footer-links {
+        font-size: 11px !important;
+      }
+      
+      .wrapper-padding {
+        padding: 20px 10px !important;
+      }
+      
+      .card-padding {
+        padding: 18px !important;
+      }
+    }
+    
+    /* =====================================================
+       SMALL MOBILE STYLES (max-width: 375px)
+       ===================================================== */
+    @media only screen and (max-width: 375px) {
+      .mobile-padding {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+      
+      .accordion-header,
+      .accordion-header-category {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+      
+      .header-title {
+        font-size: 22px !important;
+      }
+      
+      .header-subtitle {
+        font-size: 13px !important;
+      }
+      
+      .month-header {
+        font-size: 18px !important;
+      }
+      
+      .stat-number {
+        font-size: 32px !important;
+      }
+      
+      .feature-title {
+        font-size: 15px !important;
+      }
+      
+      .feature-summary {
+        font-size: 12px !important;
+      }
+      
+      .summary-text {
+        font-size: 13px !important;
+      }
+      
+      .logo-img {
+        width: 60px !important;
+        height: 60px !important;
+      }
+      
+      .card-padding {
+        padding: 15px !important;
+      }
+      
+      .cta-title {
+        font-size: 18px !important;
+      }
+      
+      .accordion-title {
+        font-size: 12px !important;
+      }
+      
+      .count-badge {
+        font-size: 10px !important;
+        padding: 3px 8px !important;
+      }
+    }
+    
+    /* =====================================================
+       DARK MODE SUPPORT
+       ===================================================== */
+    @media (prefers-color-scheme: dark) {
+      .dark-mode-bg {
+        background-color: #1a1a1a !important;
+      }
+      
+      .dark-mode-text {
+        color: #ffffff !important;
+      }
+    }
+    
+    /* Force Outlook to provide a view in browser link */
+    #outlook a {
+      padding: 0;
+    }
+    
+    /* Fallback for clients that don't support :checked */
+    /* Content will show expanded by default */
+    @supports not (selector(:checked)) {
+      .accordion-content {
+        max-height: none !important;
+        overflow: visible !important;
+      }
+    }
+  </style>
+</head>
+<body id="body" style="margin: 0; padding: 0; background-color: #F5F7FA; width: 100% !important; min-width: 100%;">
+  
+  <!-- PREVIEW TEXT (hidden) -->
+  <div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all;">
+    December 2025 Snowflake Release Updates - 15 new features including Interactive Tables GA, Cost Anomalies, AI_REDACT, and more! Discover what's new this month.
+    &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+  </div>
+  
+  <!-- EMAIL WRAPPER -->
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #F5F7FA;">
+    <tr>
+      <td align="center" class="wrapper-padding" style="padding: 40px 20px;">
+        
+        <!-- =====================================================
+             MAIN CONTAINER - Fluid with max-width 1200px
+             ===================================================== -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="email-container" style="max-width: 1200px; background-color: #FFFFFF; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.08);">
+          
+          <!-- =====================================================
+               SECTION 1: HEADER
+               Dynamic Gradient Background
+               ===================================================== -->
+          <tr>
+            <td class="mobile-padding" style="background: linear-gradient(135deg, #29B5E8 0%, #11567F 70%, #0d4a6b 100%); padding: 50px 60px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td>
+                    <!-- Snowflake Logo with glow effect -->
+                    <div style="display: inline-block; padding: 8px; background: rgba(255,255,255,0.15); border-radius: 12px; backdrop-filter: blur(10px);">
+                      <img src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-snowflake/chapter_banners/User%20Groups%20Filler%20Icon.png" alt="Snowflake" width="80" height="80" class="logo-img" style="display: block; border-radius: 8px; width: 80px; height: 80px;">
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top: 30px;">
+                    <!-- Accent bar -->
+                    <div style="width: 60px; height: 4px; background-color: #FFFFFF; margin-bottom: 20px; border-radius: 2px;"></div>
+                    <h1 class="header-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 40px; font-weight: bold; color: #FFFFFF; margin: 0; text-transform: uppercase; letter-spacing: 3px; line-height: 1.1; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                      RELEASE UPDATES
+                    </h1>
+                    <p class="header-subtitle" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; color: rgba(255,255,255,0.9); margin: 15px 0 0 0; letter-spacing: 1px;">
+                      December 2025 Edition
+                    </p>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-top: 25px;">
+                    <!-- Quick navigation pills -->
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                      <tr>
+                        <td style="padding-right: 10px;">
+                          <span style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; font-weight: bold;">
+                            15 New Features
+                          </span>
+                        </td>
+                        <td style="padding-right: 10px;">
+                          <span style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; font-weight: bold;">
+                            9 GA Releases
+                          </span>
+                        </td>
+                        <td>
+                          <span style="display: inline-block; padding: 8px 16px; background: rgba(255,255,255,0.2); border-radius: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #FFFFFF; font-weight: bold;">
+                            1 Preview
+                          </span>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Decorative gradient divider -->
+          <tr>
+            <td>
+              <div class="section-divider" style="height: 4px; background: linear-gradient(90deg, #29B5E8 0%, #11567F 50%, #7254A3 100%);"></div>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 2: NEWSLETTER SUMMARY (ACCORDION - EXPANDED)
+               ===================================================== -->
+          <tr>
+            <td>
+              <!-- Hidden checkbox - CHECKED for expanded by default -->
+              <input type="checkbox" id="summary-toggle" class="accordion-toggle" checked>
+              <label for="summary-toggle" class="accordion-header accordion-header-summary" style="display: block; cursor: pointer; padding: 20px 60px; background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%); border-bottom: 3px solid #29B5E8; border-left: 5px solid #29B5E8;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1.5px;">
+                        <span class="accordion-icon" style="font-size: 20px;">📋</span>
+                        This Month at a Glance
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #29B5E8; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content" style="background-color: #FFFFFF;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td class="mobile-padding" style="padding: 30px 60px 40px 60px;">
+                      <p class="summary-text" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.8; color: #5B5B5B; margin: 0;">
+                        🚀 Welcome to the <strong style="color: #11567F;">December 2025</strong> edition of Snowflake Release Updates! This month delivers <strong style="color: #29B5E8;">15</strong> powerful new capabilities to supercharge your data workflows. We're thrilled to spotlight our featured releases: <strong style="color: #11567F;">Interactive Tables and Warehouses</strong> now GA for lightning-fast operational analytics, <strong style="color: #11567F;">Cost Anomalies</strong> to automatically detect and optimize spend, <strong style="color: #11567F;">AI_REDACT</strong> for seamless PII protection, and <strong style="color: #11567F;">Semantic Views Optimization</strong> for smarter Cortex Analyst answers. With <strong>9 GA releases</strong>, <strong>5 enhancements</strong>, and <strong>1 preview feature</strong>, there's something for every Snowflake user. Dive in to discover how these innovations can transform your data strategy!
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 2B: MULTIMEDIA RESOURCES (ACCORDION - EXPANDED)
+               ===================================================== -->
+          <tr>
+            <td>
+              <input type="checkbox" id="resources-toggle" class="accordion-toggle" checked>
+              <label for="resources-toggle" class="accordion-header" style="display: block; cursor: pointer; padding: 20px 60px; background: linear-gradient(135deg, #7254A3 0%, #5a4282 100%); border-bottom: 3px solid #FF9F36;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1.5px;">
+                        <span class="accordion-icon" style="font-size: 20px;">🎬</span>
+                        Multimedia Resources
+                        <span class="count-badge" style="display: inline-block; background-color: #FF9F36; color: #000000; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 12px; margin-left: 12px;">4</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #FFFFFF; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content" style="background-color: #FFFFFF;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td class="mobile-padding" style="padding: 30px 60px 40px 60px;">
+                      
+                      <!-- HIGHLIGHTS IMAGE -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 25px;">
+                        <tr>
+                          <td style="text-align: center;">
+                            <a href="content/December_2025_Highlights.png" style="display: block;">
+                              <img src="content/December_2025_Highlights.png" alt="December 2025 Highlights" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid #E8ECF0;">
+                            </a>
+                            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #5B5B5B; margin: 12px 0 0 0;">
+                              📸 December 2025 Highlights Infographic
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- VIDEO & AUDIO RESOURCES - TWO COLUMN -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Quick Overview Video -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #F8FAFC; border-radius: 8px; border: 1px solid #E8ECF0; border-left: 5px solid #29B5E8;">
+                              <tr>
+                                <td class="card-padding" style="padding: 24px;">
+                                  <div style="display: inline-block; padding: 4px 10px; background-color: rgba(41,181,232,0.1); border-radius: 4px; margin-bottom: 12px;">
+                                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #29B5E8; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">🎥 Video</span>
+                                  </div>
+                                  <h4 style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; color: #000000; margin: 0 0 12px 0; line-height: 1.3;">
+                                    AI Updates Quick Overview
+                                  </h4>
+                                  <p style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 0 0 16px 0;">
+                                    A quick 2-minute overview of the key AI and ML updates in December 2025.
+                                  </p>
+                                  <a href="content/Snowflake_AI_Updates__Dec_2025_QuickOverview.mp4" style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #29B5E8 0%, #1da1d1 100%); border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #000000; text-decoration: none;">
+                                    ▶️ Watch Video
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Deep Dive Video -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #F8FAFC; border-radius: 8px; border: 1px solid #E8ECF0; border-left: 5px solid #11567F;">
+                              <tr>
+                                <td class="card-padding" style="padding: 24px;">
+                                  <div style="display: inline-block; padding: 4px 10px; background-color: rgba(17,86,127,0.1); border-radius: 4px; margin-bottom: 12px;">
+                                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #11567F; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">🎥 Video</span>
+                                  </div>
+                                  <h4 style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; color: #000000; margin: 0 0 12px 0; line-height: 1.3;">
+                                    December 2025 Deep Dive
+                                  </h4>
+                                  <p style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 0 0 16px 0;">
+                                    In-depth walkthrough of all December releases with demos and use cases.
+                                  </p>
+                                  <a href="content/Snowflake_Dec__25_DeepDive.mp4" style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #11567F 0%, #0d4a6b 100%); border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none;">
+                                    ▶️ Watch Video
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <!-- Audio: AI Redacts PII -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #F8FAFC; border-radius: 8px; border: 1px solid #E8ECF0; border-left: 5px solid #7254A3;">
+                              <tr>
+                                <td class="card-padding" style="padding: 24px;">
+                                  <div style="display: inline-block; padding: 4px 10px; background-color: rgba(114,84,163,0.1); border-radius: 4px; margin-bottom: 12px;">
+                                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #7254A3; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">🎧 Audio</span>
+                                  </div>
+                                  <h4 style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; color: #000000; margin: 0 0 12px 0; line-height: 1.3;">
+                                    AI_REDACT: PII Protection & Accuracy
+                                  </h4>
+                                  <p style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 0 0 16px 0;">
+                                    Listen to how AI_REDACT automatically protects sensitive data while boosting accuracy.
+                                  </p>
+                                  <a href="content/Snowflake_AI_Redacts_PII_and_Boosts_Accuracy.m4a" style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #7254A3 0%, #5a4282 100%); border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: bold; color: #FFFFFF; text-decoration: none;">
+                                    🎧 Listen Now
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Empty cell for balance -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 20px;">
+                          </td>
+                        </tr>
+                      </table>
+
+                      <!-- Note about hosting -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FFF9E6; border-radius: 6px; border: 1px solid #FFE082; margin-top: 10px;">
+                        <tr>
+                          <td style="padding: 16px 20px;">
+                            <p style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; margin: 0;">
+                              💡 <strong>Note:</strong> For email distribution, upload these files to cloud storage (Google Drive, OneDrive, etc.) and replace the local paths with shareable URLs.
+                            </p>
+                          </td>
+                        </tr>
+                      </table>
+
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 3: BLOG HIGHLIGHTS (ACCORDION - EXPANDED)
+               ===================================================== -->
+          <tr>
+            <td>
+              <input type="checkbox" id="blog-toggle" class="accordion-toggle" checked>
+              <label for="blog-toggle" class="accordion-header accordion-header-blog" style="display: block; cursor: pointer; padding: 20px 60px; background: #F5F7FA; border-bottom: 3px solid #11567F;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1.5px;">
+                        <span class="accordion-icon" style="font-size: 20px;">📰</span>
+                        Blog Highlights
+                      </span>
+                    </td>
+                    <td align="right" width="150">
+                      <a href="https://www.snowflake.com/en/blog/" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold; margin-right: 15px;">
+                        Visit Blog →
+                      </a>
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #11567F; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content" style="background-color: #F5F7FA;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td class="mobile-padding" style="padding: 25px 60px 40px 60px;">
+                      
+                      <!-- "THIS JUST IN" CARD -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E8ECF0; border-bottom: 4px solid #11567F; box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 20px;">
+                        <tr>
+                          <td class="card-padding" style="padding: 28px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                              <tr>
+                                <td>
+                                  <div style="display: inline-block; padding: 6px 14px; background: linear-gradient(135deg, #11567F 0%, #0d4a6b 100%); border-radius: 4px; margin-bottom: 18px;">
+                                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1px;">
+                                      ⚡ This Just In
+                                    </span>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td>
+                                  <ul class="blog-list" style="font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 2.2; color: #5B5B5B; margin: 0; padding-left: 20px;">
+                                    <li style="padding: 6px 0;"><a href="https://www.snowflake.com/en/blog/snowflake-intelligence-enterprise-ai/" class="blog-link" style="color: #29B5E8; text-decoration: none; display: inline-block; padding: 2px 0; border-bottom: 1px solid transparent; transition: border-color 0.2s;">Snowflake Intelligence: All Your Knowledge. One Trusted Enterprise Agent.</a></li>
+                                    <li style="padding: 6px 0;"><a href="https://www.snowflake.com/en/blog/announcements-snowflake-summit-2025/" class="blog-link" style="color: #29B5E8; text-decoration: none; display: inline-block; padding: 2px 0; border-bottom: 1px solid transparent; transition: border-color 0.2s;">Summit 2025 Highlights: Building the Future of AI and Apps</a></li>
+                                    <li style="padding: 6px 0;"><a href="https://www.snowflake.com/en/blog/platform-announcements-summit-2025/" class="blog-link" style="color: #29B5E8; text-decoration: none; display: inline-block; padding: 2px 0; border-bottom: 1px solid transparent; transition: border-color 0.2s;">An Even Easier-to-Use and More Trusted Platform from Snowflake</a></li>
+                                  </ul>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      
+                      <!-- INDUSTRY SOLUTIONS - TWO COLUMN LAYOUT -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- LEFT COLUMN - Healthcare -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E8ECF0; border-bottom: 4px solid #11567F; border-left: 5px solid #D45B90; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                              <tr>
+                                <td class="card-padding" style="padding: 24px;">
+                                  <div style="display: inline-block; padding: 4px 10px; background-color: rgba(212,91,144,0.1); border-radius: 4px; margin-bottom: 12px;">
+                                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #D45B90; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">🏥 Healthcare & Life Sciences</span>
+                                  </div>
+                                  <h4 class="industry-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; color: #000000; margin: 0 0 12px 0; line-height: 1.3;">
+                                    Healthcare & Life Sciences
+                                  </h4>
+                                  <p class="industry-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 0 0 16px 0;">
+                                    Power AI-driven insights for personalized care and better patient outcomes. See 2025 predictions for AI in Healthcare & Life Sciences.
+                                  </p>
+                                  <a href="https://www.snowflake.com/en/blog/category/industry-solutions/?tags=blog%2Findustry-solutions%2Fhealthcare" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #29B5E8; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 0;">
+                                    Explore Solutions →
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <!-- RIGHT COLUMN - Manufacturing -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 8px; border: 1px solid #E8ECF0; border-bottom: 4px solid #11567F; border-left: 5px solid #FF9F36; box-shadow: 0 4px 12px rgba(0,0,0,0.08);">
+                              <tr>
+                                <td class="card-padding" style="padding: 24px;">
+                                  <div style="display: inline-block; padding: 4px 10px; background-color: rgba(255,159,54,0.1); border-radius: 4px; margin-bottom: 12px;">
+                                    <span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px; color: #FF9F36; text-transform: uppercase; letter-spacing: 1px; font-weight: bold;">🏭 Manufacturing</span>
+                                  </div>
+                                  <h4 class="industry-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 17px; font-weight: bold; color: #000000; margin: 0 0 12px 0; line-height: 1.3;">
+                                    Manufacturing
+                                  </h4>
+                                  <p class="industry-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 0 0 16px 0;">
+                                    Accelerate Industry 4.0 with intelligent supply chains and data-driven operations. Navigate tariffs with Data & AI strategies.
+                                  </p>
+                                  <a href="https://www.snowflake.com/en/blog/category/industry-solutions/?tags=blog%2Findustry-solutions%2Fmanufacturing" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #29B5E8; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 0;">
+                                    Explore Solutions →
+                                  </a>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 4: MONTH TITLE & QUICK STATS
+               Always visible - not collapsible
+               ===================================================== -->
+          <tr>
+            <td class="mobile-padding" style="padding: 50px 60px 20px 60px; background-color: #FFFFFF;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td>
+                    <div style="display: inline-block; padding: 8px 20px; background: linear-gradient(135deg, #11567F 0%, #0d4a6b 100%); border-radius: 4px; margin-bottom: 20px;">
+                      <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; font-weight: bold; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1px;">
+                        Release Summary
+                      </span>
+                    </div>
+                    <h2 class="month-header" style="font-family: Arial, Helvetica, sans-serif; font-size: 32px; font-weight: bold; color: #000000; margin: 0; text-transform: uppercase; letter-spacing: 2px;">
+                      DECEMBER 2025
+                    </h2>
+                    <div style="width: 80px; height: 4px; background: linear-gradient(90deg, #29B5E8 0%, #11567F 100%); margin-top: 15px; border-radius: 2px;"></div>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- QUICK STATS -->
+          <tr>
+            <td class="mobile-padding" style="padding: 30px 60px 40px 60px; background-color: #FFFFFF;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); border-radius: 12px; border: 1px solid #E8ECF0;">
+                <tr>
+                  <td class="stat-cell" align="center" width="25%" style="padding: 30px 15px;">
+                    <span class="stat-number" style="font-family: Arial, Helvetica, sans-serif; font-size: 52px; font-weight: bold; color: #29B5E8; display: block; line-height: 1; text-shadow: 0 2px 4px rgba(41,181,232,0.2);">
+                      15
+                    </span>
+                    <span class="stat-label" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; display: block; font-weight: bold;">New Features</span>
+                  </td>
+                  <td class="stat-cell" align="center" width="25%" style="padding: 30px 15px; border-left: 2px solid #E8ECF0;">
+                    <span class="stat-number" style="font-family: Arial, Helvetica, sans-serif; font-size: 52px; font-weight: bold; color: #29B5E8; display: block; line-height: 1; text-shadow: 0 2px 4px rgba(41,181,232,0.2);">
+                      5
+                    </span>
+                    <span class="stat-label" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; display: block; font-weight: bold;">Enhancements</span>
+                  </td>
+                  <td class="stat-cell" align="center" width="25%" style="padding: 30px 15px; border-left: 2px solid #E8ECF0;">
+                    <span class="stat-number" style="font-family: Arial, Helvetica, sans-serif; font-size: 52px; font-weight: bold; color: #11567F; display: block; line-height: 1; text-shadow: 0 2px 4px rgba(17,86,127,0.2);">
+                      9
+                    </span>
+                    <span class="stat-label" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; display: block; font-weight: bold;">GA Releases</span>
+                  </td>
+                  <td class="stat-cell" align="center" width="25%" style="padding: 30px 15px; border-left: 2px solid #E8ECF0;">
+                    <span class="stat-number" style="font-family: Arial, Helvetica, sans-serif; font-size: 52px; font-weight: bold; color: #7254A3; display: block; line-height: 1; text-shadow: 0 2px 4px rgba(114,84,163,0.2);">
+                      1
+                    </span>
+                    <span class="stat-label" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; display: block; font-weight: bold;">Previews</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 5: FEATURED RELEASES (ACCORDION - EXPANDED)
+               ===================================================== -->
+          <tr>
+            <td>
+              <input type="checkbox" id="featured-toggle" class="accordion-toggle" checked>
+              <label for="featured-toggle" class="accordion-header accordion-header-featured" style="display: block; cursor: pointer; padding: 20px 60px; background: linear-gradient(135deg, #29B5E8 0%, #11567F 100%); border-bottom: 4px solid #FF9F36;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1.5px;">
+                        <span class="accordion-icon" style="font-size: 20px;">⭐</span>
+                        Featured Releases
+                        <span class="count-badge" style="display: inline-block; background-color: #FF9F36; color: #000000; font-size: 12px; font-weight: bold; padding: 4px 10px; border-radius: 12px; margin-left: 12px;">4</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #FFFFFF; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content" style="background-color: #11567F;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td class="mobile-padding" style="padding: 30px 60px 40px 60px;">
+                      
+                      <!-- FEATURED CARDS - TWO COLUMN LAYOUT -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- FEATURED CARD 1: Interactive Tables and Warehouses -->
+                          <td class="feature-card mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FFFFFF; border-radius: 8px; border-left: 5px solid #29B5E8; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                              <tr>
+                                <td class="card-padding" style="padding: 28px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Interactive Tables and Interactive Warehouses
+                                        </span>
+                                      </td>
+                                      <td align="right" width="55" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 5px 12px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7; color: #5B5B5B; margin: 18px 0 20px 0;">
+                                    Interactive tables and warehouses are now generally available, enabling sub-second query latency for operational analytics and real-time data applications. Ideal for building responsive dashboards and powering data-driven applications.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B;">
+                                        📅 December 11, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #29B5E8; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 0;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- FEATURED CARD 2: Cost Anomalies -->
+                          <td class="feature-card mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FFFFFF; border-radius: 8px; border-left: 5px solid #29B5E8; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                              <tr>
+                                <td class="card-padding" style="padding: 28px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Cost Anomalies
+                                        </span>
+                                      </td>
+                                      <td align="right" width="55" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 5px 12px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7; color: #5B5B5B; margin: 18px 0 20px 0;">
+                                    Automatically detects unusual spending patterns in your Snowflake account, helping you identify and respond to cost spikes before they impact your budget. Essential for proactive cost management and optimization.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B;">
+                                        📅 December 10, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #29B5E8; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 0;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+
+                        <!-- ROW 2 -->
+                        <tr>
+                          <!-- FEATURED CARD 3: AI_REDACT -->
+                          <td class="feature-card mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FFFFFF; border-radius: 8px; border-left: 5px solid #29B5E8; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                              <tr>
+                                <td class="card-padding" style="padding: 28px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          AI_REDACT for Automated PII Redaction
+                                        </span>
+                                      </td>
+                                      <td align="right" width="55" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 5px 12px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7; color: #5B5B5B; margin: 18px 0 20px 0;">
+                                    Automatically identifies and redacts personally identifiable information (PII) from text data using Snowflake's AI capabilities. Enables privacy-compliant data processing without manual intervention.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B;">
+                                        📅 December 08, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #29B5E8; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 0;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- FEATURED CARD 4: Semantic Views Optimization -->
+                          <td class="feature-card mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 20px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #FFFFFF; border-radius: 8px; border-left: 5px solid #FF9F36; box-shadow: 0 8px 24px rgba(0,0,0,0.2);">
+                              <tr>
+                                <td class="card-padding" style="padding: 28px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 18px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Optimize Existing Semantic Views or Models
+                                        </span>
+                                      </td>
+                                      <td align="right" width="55" valign="top">
+                                        <span class="status-badge badge-pupr" style="display: inline-block; padding: 5px 12px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #000000; background-color: #FF9F36; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">PuPr</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 1.7; color: #5B5B5B; margin: 18px 0 20px 0;">
+                                    Enables optimization of existing semantic views or models with verified queries, improving Cortex Analyst response accuracy and reliability for natural language data queries.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B;">
+                                        📅 December 02, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; color: #29B5E8; text-decoration: none; font-weight: bold; display: inline-block; padding: 4px 0;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 6: RELEASE CATEGORIES (ACCORDIONS - COLLAPSED)
+               Each category is a separate collapsible section
+               ===================================================== -->
+          
+          <!-- Category section header -->
+          <tr>
+            <td class="mobile-padding" style="padding: 50px 60px 25px 60px; background-color: #FFFFFF;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td>
+                    <div style="display: inline-block; padding: 6px 14px; background-color: #11567F; border-radius: 4px; margin-bottom: 15px;">
+                      <span style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; font-weight: bold; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1px;">
+                        📦 All Releases by Category
+                      </span>
+                    </div>
+                    <p style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #5B5B5B; margin: 0;">
+                      Click on each category to expand and view all releases. Categories are sorted by type.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- CATEGORY 1: DATA ENGINEERING (COLLAPSED) -->
+          <tr>
+            <td style="padding: 8px 0; background-color: #FFFFFF;">
+              <input type="checkbox" id="cat1-toggle" class="accordion-toggle">
+              <label for="cat1-toggle" class="accordion-header accordion-header-category" style="display: block; cursor: pointer; padding: 18px 24px; background: #FFFFFF; border: 1px solid #E8ECF0; border-left: 4px solid #29B5E8; margin: 0 60px; border-radius: 6px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1px;">
+                        <span style="font-size: 16px; margin-right: 8px;">⚙️</span>
+                        Data Engineering
+                        <span class="count-badge" style="display: inline-block; background-color: #11567F; color: #FFFFFF; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 10px; margin-left: 10px;">4</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #11567F; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content accordion-content-category" style="margin: 0 60px; border: 1px solid #E8ECF0; border-top: none; border-radius: 0 0 6px 6px; background-color: #FAFBFC;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td style="padding: 24px;">
+                      
+                      <!-- Feature cards in this category -->
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Interactive Tables -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Interactive Tables and Interactive Warehouses
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Now GA, enabling sub-second query latency for operational analytics and real-time data applications.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 11, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Default Pipe Snowpipe Streaming -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Default Pipe for Snowpipe Streaming
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Simplifies Snowpipe Streaming setup by providing a default pipe configuration for high-performance architecture.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 11, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <!-- Dynamic Tables Dual Warehouses -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Dynamic Tables: Support for Dual Warehouses
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Optimize performance and cost by using separate warehouses for initialization vs. regular refreshes.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 08, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-08-dynamic-tables-dual-warehouses" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Iceberg REST Private Connectivity -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Private Connectivity for Iceberg REST Catalog
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Connect securely to external Iceberg REST catalogs like AWS Glue and Databricks Unity Catalog via private endpoints.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 02, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-02-iceberg-rest-catalog-private-connectivity" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                      
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- CATEGORY 2: AI & ML (COLLAPSED) -->
+          <tr>
+            <td style="padding: 8px 0; background-color: #FFFFFF;">
+              <input type="checkbox" id="cat2-toggle" class="accordion-toggle">
+              <label for="cat2-toggle" class="accordion-header accordion-header-category" style="display: block; cursor: pointer; padding: 18px 24px; background: #FFFFFF; border: 1px solid #E8ECF0; border-left: 4px solid #7254A3; margin: 0 60px; border-radius: 6px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1px;">
+                        <span style="font-size: 16px; margin-right: 8px;">🤖</span>
+                        AI & Machine Learning
+                        <span class="count-badge" style="display: inline-block; background-color: #7254A3; color: #FFFFFF; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 10px; margin-left: 10px;">3</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #11567F; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content accordion-content-category" style="margin: 0 60px; border: 1px solid #E8ECF0; border-top: none; border-radius: 0 0 6px 6px; background-color: #FAFBFC;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td style="padding: 24px;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- AI_REDACT -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          AI_REDACT for Automated PII Redaction
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Automatically identifies and redacts PII from text data using Snowflake's AI capabilities for privacy-compliant processing.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 08, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Semantic Views Optimization -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Optimize Semantic Views or Models
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-pupr" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #000000; background-color: #FF9F36; text-transform: uppercase;">PuPr</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Optimize existing semantic views with verified queries to improve Cortex Analyst response accuracy.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 02, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <!-- CORTEX_AISQL_USAGE_HISTORY -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          CORTEX_AISQL_USAGE_HISTORY View
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Account Usage view providing detailed insights into Cortex AI Functions usage in your SQL queries.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 01, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-01-cortex-aisql-usage-history" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- CATEGORY 3: SECURITY & GOVERNANCE (COLLAPSED) -->
+          <tr>
+            <td style="padding: 8px 0; background-color: #FFFFFF;">
+              <input type="checkbox" id="cat3-toggle" class="accordion-toggle">
+              <label for="cat3-toggle" class="accordion-header accordion-header-category" style="display: block; cursor: pointer; padding: 18px 24px; background: #FFFFFF; border: 1px solid #E8ECF0; border-left: 4px solid #11567F; margin: 0 60px; border-radius: 6px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1px;">
+                        <span style="font-size: 16px; margin-right: 8px;">🔒</span>
+                        Security & Governance
+                        <span class="count-badge" style="display: inline-block; background-color: #11567F; color: #FFFFFF; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 10px; margin-left: 10px;">3</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #11567F; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content accordion-content-category" style="margin: 0 60px; border: 1px solid #E8ECF0; border-top: none; border-radius: 0 0 6px 6px; background-color: #FAFBFC;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td style="padding: 24px;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Private Connectivity GCP -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Private Connectivity for Internal Stages on GCP
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Secure private connectivity to internal stages on Google Cloud Platform without public internet traversal.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 12, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- WORM Backups -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          WORM Backups
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Write Once, Read Many backups now GA for immutable data protection and compliance requirements.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 10, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-10-worm-backups" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <!-- Access History Improvements -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Access History Improvements
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Enhanced tracking for SQL statements including improved DML statement monitoring capabilities.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 03, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-02-access-history" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- CATEGORY 4: DATA SHARING & COLLABORATION (COLLAPSED) -->
+          <tr>
+            <td style="padding: 8px 0; background-color: #FFFFFF;">
+              <input type="checkbox" id="cat4-toggle" class="accordion-toggle">
+              <label for="cat4-toggle" class="accordion-header accordion-header-category" style="display: block; cursor: pointer; padding: 18px 24px; background: #FFFFFF; border: 1px solid #E8ECF0; border-left: 4px solid #75CDD7; margin: 0 60px; border-radius: 6px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1px;">
+                        <span style="font-size: 16px; margin-right: 8px;">🔗</span>
+                        Data Sharing & Collaboration
+                        <span class="count-badge" style="display: inline-block; background-color: #75CDD7; color: #000000; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 10px; margin-left: 10px;">3</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #11567F; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content accordion-content-category" style="margin: 0 60px; border: 1px solid #E8ECF0; border-top: none; border-radius: 0 0 6px 6px; background-color: #FAFBFC;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td style="padding: 24px;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Data Clean Rooms 12.3 -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Data Clean Rooms Updates (API 12.3)
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Latest Clean Rooms API updates with enhanced collaborative data analysis capabilities.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 11, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-04-dcr" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Data Clean Rooms 12.2 -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Data Clean Rooms Updates (API 12.2)
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    UI and API improvements for privacy-preserving data collaboration workflows.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 04, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-04-dcr" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                        <tr>
+                          <!-- Auto-fulfillment Listings -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Auto-fulfillment for Cross-Database Listings
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Create listings spanning multiple databases without combining into a single database per listing.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 02, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-02-laf-listings-span-databases" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- CATEGORY 5: COST MANAGEMENT (COLLAPSED) -->
+          <tr>
+            <td style="padding: 8px 0 30px 0; background-color: #FFFFFF;">
+              <input type="checkbox" id="cat5-toggle" class="accordion-toggle">
+              <label for="cat5-toggle" class="accordion-header accordion-header-category" style="display: block; cursor: pointer; padding: 18px 24px; background: #FFFFFF; border: 1px solid #E8ECF0; border-left: 4px solid #FF9F36; margin: 0 60px; border-radius: 6px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td>
+                      <span class="accordion-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #11567F; text-transform: uppercase; letter-spacing: 1px;">
+                        <span style="font-size: 16px; margin-right: 8px;">💰</span>
+                        Cost Management
+                        <span class="count-badge" style="display: inline-block; background-color: #FF9F36; color: #000000; font-size: 11px; font-weight: bold; padding: 3px 10px; border-radius: 10px; margin-left: 10px;">2</span>
+                      </span>
+                    </td>
+                    <td align="right" width="30">
+                      <span class="accordion-arrow" style="display: inline-block; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 7px solid #11567F; transition: transform 0.3s ease;"></span>
+                    </td>
+                  </tr>
+                </table>
+              </label>
+              <div class="accordion-content accordion-content-category" style="margin: 0 60px; border: 1px solid #E8ECF0; border-top: none; border-radius: 0 0 6px 6px; background-color: #FAFBFC;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td style="padding: 24px;">
+                      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                        <tr>
+                          <!-- Cost Anomalies -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-right: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Cost Anomalies
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Automatically detect unusual spending patterns and respond to cost spikes proactively.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 10, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/new-features" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+
+                          <!-- Snowpipe Simplified Pricing -->
+                          <td class="mobile-stack mobile-full" width="48%" valign="top" style="padding-left: 12px; padding-bottom: 16px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="feature-card-enhanced" style="background-color: #FFFFFF; border-radius: 6px; border: 1px solid #E8ECF0; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                              <tr>
+                                <td class="card-padding" style="padding: 20px;">
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td>
+                                        <span class="feature-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; font-weight: bold; color: #000000; line-height: 1.3; display: block;">
+                                          Snowpipe Simplified Pricing
+                                        </span>
+                                      </td>
+                                      <td align="right" width="50" valign="top">
+                                        <span class="status-badge badge-ga" style="display: inline-block; padding: 4px 10px; border-radius: 4px; font-family: Arial, Helvetica, sans-serif; font-size: 10px; font-weight: bold; color: #FFFFFF; background-color: #11567F; text-transform: uppercase;">GA</span>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                  <p class="feature-summary" style="font-family: Arial, Helvetica, sans-serif; font-size: 13px; line-height: 1.6; color: #5B5B5B; margin: 14px 0 16px 0;">
+                                    Fixed 0.0037 credits per GB pricing model for more predictable and often lower data ingestion costs.
+                                  </p>
+                                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                      <td style="font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #888888;">
+                                        December 08, 2025
+                                      </td>
+                                      <td align="right">
+                                        <a href="https://docs.snowflake.com/en/release-notes/2025/other/2025-12-08-snowpipe-simplified-pricing" class="view-docs-link" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #29B5E8; text-decoration: none; font-weight: bold;">
+                                          View Docs →
+                                        </a>
+                                      </td>
+                                    </tr>
+                                  </table>
+                                </td>
+                              </tr>
+                            </table>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 7: CTA (Call to Action)
+               ===================================================== -->
+          <tr>
+            <td class="mobile-padding" style="padding: 60px; background: linear-gradient(135deg, #11567F 0%, #0d4a6b 100%);">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <div style="width: 60px; height: 4px; background-color: #29B5E8; margin: 0 auto 25px auto; border-radius: 2px;"></div>
+                    <h2 class="cta-title" style="font-family: Arial, Helvetica, sans-serif; font-size: 28px; font-weight: bold; color: #FFFFFF; margin: 0 0 18px 0; text-transform: uppercase; letter-spacing: 2px;">
+                      Stay Up to Date
+                    </h2>
+                    <p class="cta-text" style="font-family: Arial, Helvetica, sans-serif; font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.9); margin: 0 0 30px 0; max-width: 550px;">
+                      Visit the Snowflake Documentation to explore all features and learn how to leverage these new capabilities in your data workflows.
+                    </p>
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" class="cta-button" style="margin: 0 auto;">
+                      <tr>
+                        <td style="background: linear-gradient(135deg, #29B5E8 0%, #1da1d1 100%); border-radius: 6px; box-shadow: 0 4px 12px rgba(41,181,232,0.3);">
+                          <a href="https://docs.snowflake.com/en/release-notes/new-features" style="display: inline-block; padding: 16px 40px; font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-weight: bold; color: #000000; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px;">
+                            View All Release Notes →
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- =====================================================
+               SECTION 8: FOOTER
+               ===================================================== -->
+          <tr>
+            <td class="mobile-padding" style="padding: 35px 60px; background-color: #F5F7FA; border-top: 1px solid #E8ECF0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td align="center">
+                    <!-- Snowflake logo small -->
+                    <img src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-snowflake/chapter_banners/User%20Groups%20Filler%20Icon.png" alt="Snowflake" width="40" height="40" style="display: block; margin: 0 auto 15px auto; border-radius: 6px; width: 40px; height: 40px;">
+                    <p class="footer-text" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; margin: 0 0 12px 0;">
+                      © 2025 Snowflake Inc. All Rights Reserved.
+                    </p>
+                    <p class="footer-links" style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #5B5B5B; margin: 0;">
+                      <a href="https://www.snowflake.com" style="color: #29B5E8; text-decoration: none; padding: 4px 10px; display: inline-block;">snowflake.com</a>
+                      <span style="color: #D1D5DB;">|</span>
+                      <a href="https://docs.snowflake.com" style="color: #29B5E8; text-decoration: none; padding: 4px 10px; display: inline-block;">Documentation</a>
+                      <span style="color: #D1D5DB;">|</span>
+                      <a href="https://community.snowflake.com" style="color: #29B5E8; text-decoration: none; padding: 4px 10px; display: inline-block;">Community</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+        </table>
+        <!-- END MAIN CONTAINER -->
+        
+      </td>
+    </tr>
+  </table>
+  <!-- END EMAIL WRAPPER -->
+
+  <!-- =====================================================
+       TEMPLATE V2 USAGE GUIDE
+       =====================================================
+       
+       ACCORDION SECTIONS:
+       - Summary: EXPANDED by default (checkbox checked)
+       - Blog Highlights: EXPANDED by default (checkbox checked)
+       - Featured Releases: EXPANDED by default (checkbox checked)
+       - Category sections: COLLAPSED by default (checkbox unchecked)
+       
+       TO ADD NEW CATEGORIES:
+       1. Copy a category accordion block
+       2. Change the id (e.g., cat5-toggle)
+       3. Update the icon, title, and count badge
+       4. Add feature cards inside the accordion content
+       
+       GRACEFUL DEGRADATION:
+       - In Gmail/Outlook: All content displays expanded
+       - In Apple Mail/iOS Mail: Accordions work interactively
+       - CSS fallback ensures content is always visible
+       
+       BADGE CLASSES:
+       - .badge-ga: General Availability (dark blue)
+       - .badge-pupr: Public Preview (orange)
+       - .badge-prpr: Private Preview (purple)
+       
+       MOBILE BREAKPOINTS:
+       - Tablet: max-width 768px
+       - Mobile: max-width 600px
+       - Small Mobile: max-width 375px
+       
+       ===================================================== -->
+
+</body>
+</html>
